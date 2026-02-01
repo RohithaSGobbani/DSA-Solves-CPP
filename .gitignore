@@ -1,0 +1,8 @@
+# Compiled Binaries
+*.out
+*.exe
+*.o
+
+# Arch/Linux System files
+.DS_Store
+*~
