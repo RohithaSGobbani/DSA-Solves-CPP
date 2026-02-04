@@ -24,10 +24,10 @@ void nextPermu(vector<int> &arr){
     }
 }
 
-"""
+/*
 Input: nums = [1,2,3]
 Output: [1,3,2]
-"""
+*/
 
 int main(){
     int n; 
