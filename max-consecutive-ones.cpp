@@ -13,10 +13,10 @@ int findMaxConsecutiveOnes(vector<int>& nums) {
     return max1;
 }
 
-"""
+/*
 Input: nums = [1,1,0,1,1,1]
 Output: 3
-"""
+*/
 
 int main(){
     int n; 
