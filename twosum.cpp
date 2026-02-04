@@ -53,10 +53,10 @@ string twosumoptimal(vector<int> &arr, int tar){
     return "False";
 }
 
-"""
+/*
 Input: arr = [2,6,5,8,11], tar = 14
 Output: true
-"""
+*/
 
 int main(){
     int n;
