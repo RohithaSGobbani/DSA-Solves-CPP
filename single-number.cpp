@@ -9,10 +9,10 @@ int singleNumber(vector<int>& nums) {
     return ans;
 }
 
-"""
+/*
 Input: nums = [4,1,2,1,2]
 Output: 4
-"""
+*/
 
 int main(){
     int n; 
