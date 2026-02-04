@@ -1,8 +1,10 @@
+#include<bits/stdc++.h>
+using namespace std;
 
-"""
+/*
 Input: nums = [1,2,2,4]
 Output: [2,3]
-"""
+*/
 
 vector<int> findErrorNums(vector<int>& arr) {
     int n = arr.size();
@@ -24,3 +26,14 @@ vector<int> findErrorNums(vector<int>& arr) {
     ans.push_back(missing);
     return ans;
 }
+
+int main(){
+    int n;
+    cin << n;
+    vector<int> arr;
+    for(int i = 0;  i < n; i++){
+        cin << arr[i];
+    }
+    findErrorNums(arr);
+    return 0;
+)
