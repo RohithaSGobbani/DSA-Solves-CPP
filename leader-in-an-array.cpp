@@ -37,10 +37,8 @@ void leaderOptimal(vector<int> &arr){
 }
 
 /*
-Input:
- arr = [4, 7, 1, 0]  
-Output:
- 7 1 0  
+Input: arr = [4, 7, 1, 0]  
+Output: 7 1 0  
 */
 
 int main(){
