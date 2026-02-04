@@ -76,10 +76,10 @@ int longestSubarrayOptimal(vector<int> &arr, int k){
     return maxLen;
 }
 
-"""
+/*
 Input: arr = [1,2,3,1,1,1,1,4,2,3], k = 3
 Output: 3
-"""
+*/
 
 int main(){
     int n;
