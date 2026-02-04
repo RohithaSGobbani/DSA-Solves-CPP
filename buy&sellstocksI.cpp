@@ -12,10 +12,10 @@ void buynsell(vector<int> &arr){
     cout << profit;
 }
 
-"""
+/*
 Input: arr = [7,1,5,3,6,4]
 Output: 5
-"""
+*/
 
 int main(){
     int n; 
