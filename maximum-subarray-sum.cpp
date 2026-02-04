@@ -16,10 +16,10 @@ int maxSubArray(vector<int>& arr) {
     return maxi;
 }
 
-"""
+/*
 Input: arr = [-2,-3,4,-1,-2,1,5,-3]
 Output: 7
-"""
+*/
 
 int main(){
     int n;
