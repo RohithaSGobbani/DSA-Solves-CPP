@@ -65,10 +65,10 @@ void mostFrequentEven(vector<int>& arr) {
     //return mini;
 }
 
-"""
+/*
 Input: arr = [2,2,3,3,1,2,2]
 Output: 2
-"""
+*/
 
 int main(){
     int n;
