@@ -40,6 +40,71 @@ void findMissingBetter(vector<int> &arr){
     }
 }
 
+//Optimal1: Maths
+void findmissing(vector<int> &arr){
+    long long n = arr.size();
+    long long sn = (n * (n+1))/ 2;
+    long long sn2 = ((n * (n+1) * (2 * n + 1)) / 6);
+    long long s = 0, s2 =  0;
+    for(int i = 0; i < n; i++){
+        s += arr[i];
+        s2 += (long long)arr[i] * (long long)arr[i];
+    }
+    long long val1 = s - sn;
+    long long val2 = s - sn2;
+    val2 = val2 / val1;
+    long long x = (val1+val2) / 2;
+    long long y = x - val1;
+    cout << (int)x << (int)y;
+}
+
+//Optimal2: XOR
+void findmissingXOR(vector<int> &arr){
+    int n = arr.size();
+    int xr = 0;
+    for(int i = 0; i < n; i++){
+        xr = xr ^ arr[i];
+        xr = xr ^ (i+1);
+    }
+    int bitno = 0;
+    while(1){
+        if((xr & (1 << bitno)) != 0){
+            break;
+        }
+        bitno++;
+    }
+    int zero = 0;
+    int one = 0;
+    for(int i = 0; i < n; i++){
+        //part of zero group
+        if((arr[i] & (1 << bitno)) == 0){
+            zero = zero ^ arr[i];
+        }
+        //part of one group
+        else{
+            one = one ^ arr[i];
+        }
+    }
+
+    for(int i = 1; i <= n; i++){
+        //part of zero group
+        if((i & (1 << bitno)) == 0){
+            zero = zero ^ i;
+        }
+        //part of one group
+        else{
+            one = one ^ i;
+        }
+    }
+
+    int cnt = 0;
+    for(int i = 0; i < n; i++){
+        if(arr[i] == zero) cnt++;
+    }
+    if(cnt == 2) return {zero, one};
+    return {one, zero};
+}
+
 void findDisappearedNumbers(vector<int>& nums) {
     int n = nums.size();
     vector<int> ans;
