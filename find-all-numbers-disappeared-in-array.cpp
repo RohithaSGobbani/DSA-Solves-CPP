@@ -6,6 +6,21 @@ Input: nums = [4,3,2,7,8,2,3,1]
 Output: [5,6]
 */
 
+void findMissingBrute(vector<int> &arr){
+    int repeating = -1, missing = -1;
+    for(int i = 1; i < n; i++){
+        int cnt = 0;
+        for(int j = 0; j < n; j++){
+            if(arr[j] == i){
+                cnt++;
+            }
+        }
+        if(cnt == 2) repeating = i;
+        else if(cnt == 0) missing = i;
+        if(repeating != -1 && missing != -1) break;
+    }
+}
+
 void findDisappearedNumbers(vector<int>& nums) {
     int n = nums.size();
     vector<int> ans;
