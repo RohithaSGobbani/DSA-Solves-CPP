@@ -19,7 +19,7 @@ void lowerBound(vector<int> &arr, int target){
 
 /*
 Input: arr = [1 3 4 5 7 8 9 9 9 11] target = 9
-Output: 
+Output: 6
 */
 
 int main(){
