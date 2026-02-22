@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*Same for Search insert Position Problem*/
 void lowerBound(vector<int> &arr, int target){
     int n = arr.size();
     int low = 0, high = n-1;
