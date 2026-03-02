@@ -11,6 +11,20 @@ int missing(vector<int> &arr, int k){
     return k;
 }
 
+//Optimal : BS
+int missingbs(vector<int> &arr, int k){
+    int n = arr.size();
+    int low = 0, high = n-1;
+    while(low <= high){
+        int mid = low + (high - low)/2;
+        int missing = arr[mid] - (mid + 1);
+        if(missing < k) low = mid+1;
+        else high = mid-1;
+    }
+    cout << low << " " << high << endl;
+    return low+k;
+}
+
 int main(){
     int n;
     cin >> n; 
@@ -20,5 +34,5 @@ int main(){
     }
     int k;
     cin >> k;
-    cout << missing(arr, k);
+    cout << missingbs(arr, k);
 }
