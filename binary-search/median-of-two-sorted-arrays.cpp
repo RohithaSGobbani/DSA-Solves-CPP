@@ -18,6 +18,44 @@ int medianBrute(vector<int> &arr1, vector<int> &arr2){
     else return (arr3[n/2] + arr3[(n/2)-1])/2;
 }
 
+//Better
+int medianBetter(vector<int> &arr1, vector<int> &arr2){
+    int n1 = arr1.size();
+    int n2 = arr2.size();
+    int n = n1 + n2;
+    int ind1 = n/2, ind2 = (n/2)-1;
+    int ind1ele = -1 , ind2ele = -1;
+    int i = 0, j = 0;
+    int cnt = 0;
+    while(i < n1 && j < n2){
+        if(arr1[i] < arr2[j]){
+            if(cnt == ind1) ind1ele = arr1[i];
+            if(cnt == ind2) ind2ele = arr1[i];
+            cnt++;
+            i++;
+        }else{
+            if(cnt == ind1) ind1ele = arr2[j];
+            if(cnt == ind2) ind2ele = arr2[j];
+            cnt++;
+            j++;            
+        }
+    }
+    while(i < n1){
+        if(cnt == ind1) ind1ele = arr1[i];
+        if(cnt == ind2) ind2ele = arr1[i];
+        cnt++;
+        i++;        
+    }
+    while(j < n2){
+        if(cnt == ind1) ind1ele = arr2[j];
+        if(cnt == ind2) ind2ele = arr2[j];
+        cnt++;
+        j++;        
+    }
+    if(n % 2 == 1) return ind2ele;
+    else return (ind2ele + ind1ele)/ 2.0;
+}
+
 int main(){
     int n1, n2;
     cin >> n1 >> n2;
@@ -29,6 +67,6 @@ int main(){
     for(int i = 0; i < n2; i++){
         cin >> arr2[i];
     }
-    cout<< medianBrute(arr1, arr2);
+    cout<< medianBetter(arr1, arr2);
     return 0;
 }
