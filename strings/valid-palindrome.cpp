@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//Brute
 bool isPalindromeBrute(string s) {
     if(s == " " || s == "") return true;
     string s1;
@@ -18,6 +19,23 @@ bool isPalindromeBrute(string s) {
     else return false;
 }
 
+//Optimal
+bool isPalindrome(string s) {
+    string s1;
+    for(auto a: s){
+        if(isalnum(a)){
+            s1+=tolower(a);
+        }
+    }
+    int left = 0, right = s1.size()-1;        
+    while(left < right){
+        if(s1[right] != s1[left]) return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
 /*
 Input: s = "A man, a plan, a canal: Panama"
 Output: true
@@ -26,6 +44,6 @@ Output: true
 int main(){
     string s;
     cin >> s;
-    if(isPalindromeBrute(s)) cout << "true";
+    if(isPalindrome(s)) cout << "true";
     else cout << "false";
 }
