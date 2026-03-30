@@ -24,6 +24,19 @@ bool isAnagram2(string s, string t) {
     return st.empty();
 }
 
+bool isAnagramO(string s, string t) {
+    if(s.size() != t.size()) return false;
+    int freq[26] = {0};
+    for(int i = 0; i < s.size(); i++){
+        freq[s[i] - 'a']++;
+        freq[t[i] - 'a']--;
+    }
+    for(int i = 0; i < 26; i++){
+        if(freq[i] != 0) return false;
+    }
+    return true;
+}
+
 /*
 Input: s = "anagram", t = "nagaram"
 Output: true
@@ -32,5 +45,5 @@ Output: true
 int main(){
     string s, t;
     cin >> s >> t;
-    cout << isAnagram2(s,t);
+    cout << isAnagramO(s,t);
 }
