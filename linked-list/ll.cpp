@@ -66,9 +66,21 @@ Node* removeHead(Node* head){
     return head;
 }
 
+Node* removeTail(Node* head){
+    if(head == NULL || head->next == NULL) return NULL;
+    Node* temp = head;
+    while(temp->next->next != NULL){
+        temp = temp->next;
+    }
+    free(temp->next);
+    temp->next = nullptr;
+    return head;
+}
+
 int main(){
     vector<int> arr = {12,5,8,7};
     Node* head = convertArray2LL(arr);
-    head = removeHead(head);
+    // head = removeHead(head);
+    head = removeTail(head);
     print(head);
 }
