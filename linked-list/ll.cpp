@@ -49,16 +49,26 @@ int checkIfPresent(Node* head, int val){
     return 0;
 }
 
-int main(){
-    vector<int> arr = {12,5,8,7};
-    Node* head = convertArray2LL(arr);
+void print(Node* head){
     Node* temp = head;
     while(temp){
         cout << temp->data << " ";
         temp = temp->next;
     }
-    cout << endl;
-    cout << lengthOfLL(head);
-    cout << endl;
-    cout << checkIfPresent(head, 8);
+    cout << endl;    
+}
+
+Node* removeHead(Node* head){
+    if(head == NULL) return head;
+    Node* temp = head;
+    head = head->next;
+    free(temp);
+    return head;
+}
+
+int main(){
+    vector<int> arr = {12,5,8,7};
+    Node* head = convertArray2LL(arr);
+    head = removeHead(head);
+    print(head);
 }
