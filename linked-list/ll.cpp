@@ -82,10 +82,11 @@ Node* removeTail(Node* head){
 Node* deleteK(Node* head, int k){
     if(head == NULL) return head;
     if(k == 1) {
-        Node* temp = head;
-        head = head->next;
-        free(temp);
-        return head;
+        // Node* temp = head;
+        // head = head->next;
+        // free(temp);
+        // return head;
+        return removeHead(head);
     }
     int cnt = 0;
     Node* temp = head;
@@ -133,12 +134,24 @@ Node* insertHead(Node* head,int val){
     //return new Node(val, head);
 }
 
+Node* insertTail(Node* head, int val){
+    if(head == NULL) return new Node(val);
+    Node* temp = head;
+    while(temp->next != NULL){
+        temp = temp->next;
+    }
+    temp->next = new Node(val, nullptr);
+    return head;
+}
+
 int main(){
     vector<int> arr = {12,5,8,7};
     Node* head = convertArray2LL(arr);
     // head = removeHead(head);
     // head = removeTail(head);
     // head = deleteEl(head, 7);
+    head = deleteK(head, 2);
     head = insertHead(head, 25);
+    head = insertTail(head, 77);
     print(head);
 }
