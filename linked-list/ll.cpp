@@ -58,6 +58,8 @@ void print(Node* head){
     cout << endl;    
 }
 
+//Deletion
+
 Node* removeHead(Node* head){
     if(head == NULL) return head;
     Node* temp = head;
@@ -123,11 +125,20 @@ Node* deleteEl(Node* head, int el){
     return head;
 }
 
+//Insertion
+
+Node* insertHead(Node* head,int val){
+    Node* temp = new Node(val, head);
+    return temp;
+    //return new Node(val, head);
+}
+
 int main(){
     vector<int> arr = {12,5,8,7};
     Node* head = convertArray2LL(arr);
     // head = removeHead(head);
     // head = removeTail(head);
-    head = deleteEl(head, 7);
+    // head = deleteEl(head, 7);
+    head = insertHead(head, 25);
     print(head);
 }
