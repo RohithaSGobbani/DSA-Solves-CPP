@@ -167,6 +167,26 @@ Node* insertK(Node* head, int el, int k){
     return head;
 }
 
+Node* insertBeforeValue(Node* head, int el, int val){
+    if(head == NULL){
+        return NULL;
+    }
+    if(head->data == val){
+        return insertHead(head, el);
+    }
+    Node* temp = head;
+    while(temp != NULL){
+        if(temp->next->data == val){
+            Node* x = new Node(el);
+            x->next = temp->next;
+            temp->next = x;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
+
 int main(){
     vector<int> arr = {12,5,8,7};
     Node* head = convertArray2LL(arr);
@@ -177,5 +197,6 @@ int main(){
     // head = insertHead(head, 25);
     // head = insertTail(head, 77);
     head = insertK(head, 69, 2);
+    head = insertBeforeValue(head, 10, 8);
     print(head);
 }
