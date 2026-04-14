@@ -95,6 +95,7 @@ Node* deleteK(Node* head, int k){
 
     temp->next = NULL;
     temp->back = NULL;
+    delete temp;
     return head;
 }
 
