@@ -159,14 +159,22 @@ Node* insertBeforeK(Node* head, int val, int k){
     return head;
 }
 
+void insertBeforeNode(Node* node, int val){
+    Node* prev = node->back;
+    Node* newNode = new Node(val, node, prev);
+    prev->next = newNode;
+    node->back = newNode;
+}
+
 int main(){
     vector<int> arr = {10,5, 8, 9};
     Node* head = convertArray2DLL(arr);
     // head = deleteTail(head);
     // head = deleteK(head, 1);
-    deleteNode(head->next->next);
-    head = insertBeforeHead(head, 7);
-    head = insertBeforeTail(head, 16);
-    head = insertBeforeK(head, 2, 1);
+    // deleteNode(head->next->next);
+    // head = insertBeforeHead(head, 7);
+    // head = insertBeforeTail(head, 16);
+    // head = insertBeforeK(head, 2, 1);
+    insertBeforeNode(head->next, 56);
     print(head);
 }
