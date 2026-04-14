@@ -20,4 +20,31 @@ class Node{
         next = nullptr;
         back = nullptr;
     }
+};
+
+Node* convertArray2DLL(vector<int> &arr){
+    Node* head = new Node(arr[0]);
+    Node* prev = head;
+    int n = arr.size();
+    for(int i = 1; i < n; i++){
+        Node* temp = new Node(arr[i], nullptr, prev);
+        prev->next = temp;
+        prev = temp;
+    }
+    return head;
+}
+
+void print(Node* head){
+    Node* temp = head;
+    while(temp){
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;    
+}
+
+int main(){
+    vector<int> arr = {10,5, 8, 9};
+    Node* head = convertArray2DLL(arr);
+    print(head);
 }
