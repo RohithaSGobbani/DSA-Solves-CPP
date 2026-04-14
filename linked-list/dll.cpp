@@ -99,10 +99,32 @@ Node* deleteK(Node* head, int k){
     return head;
 }
 
+void deleteNode(Node* node){
+    if(node == NULL) return;
+    //Node cannot be head
+    Node* prev = node->back;
+    Node* front = node->next;
+
+    if(front == NULL){
+        prev->next = nullptr;
+        node->back = nullptr;
+        free(node);
+        return;
+    }
+    prev->next = front;
+    front->back = prev;
+
+    node->next = nullptr;
+    node->back = nullptr;
+
+    delete node;
+}
+
 int main(){
     vector<int> arr = {10,5, 8, 9};
     Node* head = convertArray2DLL(arr);
     // head = deleteTail(head);
-    head = deleteK(head, 3);
+    // head = deleteK(head, 1);
+    deleteNode(head->next->next);
     print(head);
 }
