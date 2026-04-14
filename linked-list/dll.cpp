@@ -143,6 +143,22 @@ Node* insertBeforeTail(Node* head, int val){
     return head;
 }
 
+Node* insertBeforeK(Node* head, int val, int k){
+    if(k==1) return insertBeforeHead(head, val);
+    Node* temp = head;
+    int cnt = 0;
+    while(temp -> next != NULL){
+        cnt++;
+        if(cnt == k) break;
+        temp = temp->next;
+    }
+    Node* prev = temp->back;
+    Node* newNode = new Node(val, temp, prev);
+    prev->next = newNode;
+    temp->back = newNode;
+    return head;
+}
+
 int main(){
     vector<int> arr = {10,5, 8, 9};
     Node* head = convertArray2DLL(arr);
@@ -151,5 +167,6 @@ int main(){
     deleteNode(head->next->next);
     head = insertBeforeHead(head, 7);
     head = insertBeforeTail(head, 16);
+    head = insertBeforeK(head, 2, 1);
     print(head);
 }
