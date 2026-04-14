@@ -43,6 +43,7 @@ void print(Node* head){
     cout << endl;    
 }
 
+//Deletion
 Node* deleteHead(Node* head){
     if(head == NULL || head->next == NULL) return NULL;
     
@@ -120,11 +121,19 @@ void deleteNode(Node* node){
     delete node;
 }
 
+//Insertion
+Node* insertBeforeHead(Node* head, int val){
+    Node* newHead = new Node(val, head, nullptr);
+    head->back = newHead;
+    return newHead;
+}
+
 int main(){
     vector<int> arr = {10,5, 8, 9};
     Node* head = convertArray2DLL(arr);
     // head = deleteTail(head);
     // head = deleteK(head, 1);
     deleteNode(head->next->next);
+    head = insertBeforeHead(head, 7);
     print(head);
 }
