@@ -86,9 +86,9 @@ Node* deleteK(Node* head, int k){
         delete temp;
         return NULL;
     }else if(prev == NULL){
-        deleteHead(head);
+        return deleteHead(head);
     }else if(front == NULL){
-        deleteTail(head);
+        return deleteTail(head);
     }
     prev->next = front;
     front->back = prev;
