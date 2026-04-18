@@ -43,7 +43,8 @@ void print(Node* head){
     cout << endl;    
 }
 
-Node* reverseDLL(Node* head){
+//Brute
+Node* reverseDLLBrute(Node* head){
     Node* temp = head;
     stack<int> st;
     while(temp != NULL){
@@ -59,10 +60,23 @@ Node* reverseDLL(Node* head){
     return head;
 }
 
+//Optimal
+Node* reverseDLLOptimal(Node* head){
+    Node* current = head;
+    Node* last = NULL;
+    while(current != NULL){
+        last = current->back;
+        current->back = current->next;
+        current->next = last;
+        current = current->back;
+    }
+    return last->back;
+}
+
 int main(){
     vector<int> arr = {3,9,20,4};
     Node* head = convertArray2DLL(arr);
     print(head);
-    head = reverseDLL(head);
+    head = reverseDLLOptimal(head);
     print(head);
 }
