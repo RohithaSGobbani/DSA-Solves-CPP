@@ -94,7 +94,29 @@ Node* addTwoNumbers1(Node* l1, Node* l2) {
     return dummyNode->next;
 }
 
-
+Node* addTwoNumbers2(Node* l1, Node* l2) {
+    Node* t1 = l1;
+    Node* t2 = l2;
+    Node* dummyNode = new Node(-1);
+    Node* curr = dummyNode;
+    long long carry = 0;
+    while(t1 || t2){
+        long long sum = carry;
+        if(t1) sum = sum + t1->data;
+        if(t2) sum = sum + t2->data;
+        Node* newNode = new Node(sum % 10);
+        carry = sum / 10;
+        curr->next = newNode;
+        curr = curr->next;
+        if(t1) t1 = t1->next;
+        if(t2) t2 = t2->next;
+    }
+    if(carry){
+        Node* newNode = new Node(carry);
+        curr->next = newNode;
+    }
+    return dummyNode->next;
+}
 
 /*
 Input: l1 = [2,4,3], l2 = [5,6,4]
@@ -106,6 +128,6 @@ int main(){
     vector<int> l2 = {5,6,4};
     Node* head1 = convertArray2LL(l1);
     Node* head2 = convertArray2LL(l2);
-    Node* sum = addTwoNumbers(head1, head2);
+    Node* sum = addTwoNumbers2(head1, head2);
     print(sum);
 }
