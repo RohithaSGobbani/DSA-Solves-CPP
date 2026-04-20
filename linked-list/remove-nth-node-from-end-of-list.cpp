@@ -56,10 +56,31 @@ Node* removeNthFromEnd(Node* head, int n) {
     while(temp != NULL){
         cnt++;
         if(pos == cnt){
+            Node* deleteNode = temp->next;
             temp->next = temp->next->next;
+            delete deleteNode;
         }
         temp = temp->next;
     }
+    return head;
+}
+
+Node* removeNthFromEndOptimal(Node* head, int n) {
+    if(head == NULL || head->next == NULL) return NULL;
+    Node* fast = head;
+    while(n > 0){
+        fast = fast->next;
+        n--;
+    }
+    if(fast == NULL) return head->next;
+    Node* slow = head;
+    while(fast->next != NULL){
+        fast = fast->next;
+        slow = slow->next;
+    }
+    Node* deleteNode = slow->next;
+    slow->next = slow->next->next;
+    delete deleteNode;
     return head;
 }
 
@@ -74,7 +95,7 @@ int main(){
     cin >> n;
     Node* head = convertArray2LL(arr);
     print(head);
-    head = removeNthFromEnd(head, n);
+    head = removeNthFromEndOptimal(head, n);
     print(head);
     return 0;
 }
