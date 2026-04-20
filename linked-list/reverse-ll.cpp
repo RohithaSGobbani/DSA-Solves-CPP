@@ -69,6 +69,15 @@ Node* reverseListOptimal1(Node* head) {
     return prev;
 }
 
+Node* reverseListOptimal2(Node* head) {
+    if(head == NULL || head->next == NULL) return head;
+    Node* newHead = reverseListOptimal2(head->next);
+    Node* front = head->next;
+    front->next = head;
+    head->next = NULL;
+    return newHead;
+}
+
 /*
 Input: head = [1,2,3,4,5]
 Output: [5,4,3,2,1]
@@ -78,7 +87,7 @@ int main(){
     vector<int> arr = {1,2,3,4,5};
     Node* head = convertArray2LL(arr);
     print(head);
-    head = reverseListOptimal1(head);
+    head = reverseListOptimal2(head);
     print(head);
     return 0;
 }
