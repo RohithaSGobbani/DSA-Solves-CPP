@@ -97,7 +97,7 @@ Node* sortListBetter(Node *head){
         temp = temp->next;
     }
     two->next = nullptr;
-    zero->next = oneHead->next;
+    zero->next = (oneHead->next)? oneHead->next :twoHead->next;
     one->next = twoHead->next;
     return zeroHead->next;
 }
