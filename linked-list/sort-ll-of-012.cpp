@@ -73,6 +73,35 @@ void print(Node* head){
     cout << endl;    
 }
 
+
+Node* sortListBetter(Node *head){
+    // Write your code here.
+    Node* temp = head;
+    Node* zeroHead = new Node(-1);
+    Node* zero = zeroHead;
+    Node* oneHead = new Node(-1);
+    Node* one = oneHead;
+    Node* twoHead = new Node(-1);
+    Node* two = twoHead;
+    while(temp != NULL){
+        if(temp->data == 0){
+            zero->next = temp;
+            zero = zero->next;
+        }else if(temp->data == 1){
+            one->next = temp;
+            one = one->next;
+        }else{
+            two->next = temp;
+            two = two->next;
+        }
+        temp = temp->next;
+    }
+    two->next = nullptr;
+    zero->next = oneHead->next;
+    one->next = twoHead->next;
+    return zeroHead->next;
+}
+
 /*
 Input: linkedList = [1, 0, 2, 0 , 1]
 Output: [0, 0, 1, 1, 2]
@@ -82,7 +111,7 @@ int main(){
     vector<int> arr = {1,0,2,0,1};
     Node* head = convertArray2LL(arr);
     print(head);
-    head = sortList(head);
+    head = sortListBetter(head);
     print(head);
     return 0;
 }
