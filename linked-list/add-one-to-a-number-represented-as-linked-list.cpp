@@ -76,11 +76,32 @@ Node *addOne(Node *head)
     return head;
 }
 
+int helper(Node* temp){
+    if(temp == NULL) return 1;
+    int carry = helper(temp->next);
+    temp->data = temp->data + carry;
+    if(temp->data < 10)
+        return 0;
+    temp->data = 0;
+    return 1;
+}
+
+Node *addOneOptimal(Node *head)
+{
+    int carry = helper(head);
+
+    if(carry){
+        Node* newNode = new Node(1,head);
+        return newNode;
+    }
+    return head;
+}
+
 int main(){
     vector<int> arr = {1,5,2};
     Node* head = convertArray2LL(arr);
     print(head);
-    head = addOne(head);
+    head = addOneOptimal(head);
     print(head);
     return 0;
 }
