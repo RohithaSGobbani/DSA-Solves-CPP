@@ -55,6 +55,37 @@ bool isPalindrome(Node* head) {
     return true;
 }
 
+Node* rev(Node* head){
+    if(head == NULL || head->next == NULL) return head;
+    Node* newHead = rev(head->next);
+    Node* front = head->next;
+    front->next = head;
+    head->next = NULL;
+    return newHead;
+}
+bool isPalindromeOptimal(Node* head) {
+    if(head == NULL || head->next == NULL) return true;
+    Node* slow = head;
+    Node* fast = head;
+    while(fast->next != NULL && fast->next->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    Node* newHead = rev(slow->next);
+    Node* first = head;
+    Node* second = newHead;
+    while(second != NULL){
+        if(first->data != second->data){
+            rev(newHead);
+            return false;
+        }
+        first = first->next;
+        second = second->next;
+    }
+    rev(newHead);
+    return true;
+}
+
 /*
 Input: head = [1,2,2,1]
 Output: true
@@ -64,6 +95,6 @@ int main(){
     vector<int> arr = {1,2,2,1};
     Node* head = convertArray2LL(arr);
     print(head);
-    cout << isPalindrome(head);
+    cout << isPalindromeOptimal(head);
     return 0;
 }
