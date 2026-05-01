@@ -56,6 +56,38 @@ Node *getIntersectionNode(Node *headA, Node *headB) {
     return NULL;
 }
 
+Node *getIntersectionNodeBetter(Node *headA, Node *headB) {
+    Node* t1 = headA;
+    int n1 = 0;
+    while(t1 != NULL){
+        n1++;
+        t1 = t1->next;
+    }
+    Node* t2 = headB;
+    int n2 = 0;
+    while(t2 != NULL){
+        n2++;
+        t2 = t2->next;
+    }
+    int d = n2 - n1;
+    t2 = headB;
+    while(d > 0){
+        t2 = t2->next;
+        d--;
+    }
+    d = n1 - n2;
+    t1 = headA;
+    while(d > 0){
+        t1 = t1->next;
+        d--;
+    }
+    while(t1 != NULL){
+        if(t1 == t2) return t1;
+        t1 = t1->next;
+        t2 = t2->next;
+    }
+    return NULL;
+}
 
 /*
 Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
