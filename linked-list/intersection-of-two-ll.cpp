@@ -39,10 +39,10 @@ void print(Node* head){
     cout << endl;    
 }
 
-Node *getIntersectionNode(Node *headA, Node *headB) {
+Node *getIntersectionNode(Node *head1, Node *head2) {
     unordered_map<Node*, int> mp;
-    Node* temp1 = headA;
-    Node* temp2 = headB;
+    Node* temp1 = head1;
+    Node* temp2 = head2;
     while(temp1 != NULL){
         mp[temp1] = 1;
         temp1 = temp1->next;
@@ -56,27 +56,27 @@ Node *getIntersectionNode(Node *headA, Node *headB) {
     return NULL;
 }
 
-Node *getIntersectionNodeBetter(Node *headA, Node *headB) {
-    Node* t1 = headA;
+Node *getIntersectionNodeBetter(Node *head1, Node *head2) {
+    Node* t1 = head1;
     int n1 = 0;
     while(t1 != NULL){
         n1++;
         t1 = t1->next;
     }
-    Node* t2 = headB;
+    Node* t2 = head2;
     int n2 = 0;
     while(t2 != NULL){
         n2++;
         t2 = t2->next;
     }
     int d = n2 - n1;
-    t2 = headB;
+    t2 = head2;
     while(d > 0){
         t2 = t2->next;
         d--;
     }
     d = n1 - n2;
-    t1 = headA;
+    t1 = head1;
     while(d > 0){
         t1 = t1->next;
         d--;
@@ -87,6 +87,19 @@ Node *getIntersectionNodeBetter(Node *headA, Node *headB) {
         t2 = t2->next;
     }
     return NULL;
+}
+
+Node *getIntersectionNode(Node *head1, Node *head2) {
+    Node* t1 = head1;
+    Node* t2 = head2;
+    while(t1 != t2){
+        t1 = t1->next;
+        t2 = t2->next;
+        if(t1 == t2) return t1;
+        if(t1 == NULL) t1 = head2;
+        if(t2 == NULL) t2 = head1;
+    }
+    return t1;
 }
 
 /*
