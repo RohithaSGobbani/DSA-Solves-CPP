@@ -35,3 +35,22 @@ Node *detectCycle(Node *head) {
     }
     return NULL;
 }
+
+//Optimal
+NOde *detectCycleOptimal(NOde *head) {
+    if(head == NULL || head->next == NULL) return NULL;
+    NOde* fast = head;
+    NOde* slow = head;
+    while(fast != NULL && fast->next != NULL){
+        fast = fast->next->next;
+        slow = slow->next;
+        if(slow == fast) break;
+    }
+    if(!(fast && fast->next)) return NULL;
+    NOde* temp = head;
+    while(temp != slow){
+        temp = temp->next;
+        slow = slow->next;
+    }
+    return temp;
+}
