@@ -19,7 +19,7 @@ class Node{
     }
 };
 
-int findLengthOfLoop(Node *head) {
+int findLengthOfLoop1(Node *head) {
     if(head == NULL || head->next == NULL) return 0;
     Node* fast = head;
     Node* slow = head;
@@ -43,4 +43,20 @@ int findLengthOfLoop(Node *head) {
         slow = slow->next;
     }
     return n;
+}
+
+int findLengthOfLoop2(Node *head) {
+    if(head == NULL || head->next == NULL) return 0;
+    Node* temp = head;
+    unordered_map<Node*, int> mp;
+    int cnt = 1;
+    while(temp!= NULL){
+        if(mp.find(temp) != mp.end()){
+            return cnt - mp[temp];
+        }
+        mp[temp] = cnt;
+        cnt++;
+        temp = temp->next;
+    }
+    return 0;
 }
