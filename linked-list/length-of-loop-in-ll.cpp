@@ -60,3 +60,22 @@ int findLengthOfLoop2(Node *head) {
     }
     return 0;
 }
+
+int findLengthOfLoop3(Node *head) {
+    if(head == NULL || head->next == NULL) return 0;
+    Node* slow = head;
+    Node* fast = head;
+    while(fast && fast->next){
+        fast = fast->next->next;
+        slow = slow->next;
+        if(slow == fast) break;
+    }
+    if(!(fast && fast->next)) return 0;
+    int cnt = 1;
+    fast = fast->next;
+    while(slow != fast){
+        cnt++;
+        fast = fast->next;
+    }
+    return cnt;
+}
