@@ -50,7 +50,7 @@ vector<pair<int, int>> findPairs(Node* head, int k)
     while(t1 != NULL){
         Node* t2 = t1->next;
 
-        while(t2 != NULL){
+        while(t2 != NULL && (t1->data + t2->data) <= k){
             int sum = 0;
             sum += t1->data + t2->data;
             if(sum == k) ans.push_back({t1->data, t2->data});
