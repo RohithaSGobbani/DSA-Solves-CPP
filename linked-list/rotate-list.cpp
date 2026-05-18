@@ -58,6 +58,28 @@ Node* rotateRight(Node* head, int k) {
     return head;
 }
 
+Node* rotateRight(Node* head, int k) {
+    if(head == NULL || head->next == NULL || k == 0) return head;
+    int len = 1;
+    Node* tail = head;
+    while(tail->next != NULL){
+        len++;
+        tail = tail->next;
+    }
+    if(k % len == 0) return head;
+    k = k % len;
+    int mv = len - k;
+    tail->next = head;
+    Node* temp = head;
+    while(mv > 1){
+        mv--;
+        temp = temp->next;
+    }
+    head = temp->next;
+    temp->next = NULL;
+    return head;
+}
+
 /*
 Input: head = [1,2,3,4,5], k = 2
 Output: [4,5,1,2,3]
