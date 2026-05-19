@@ -39,7 +39,27 @@ void print(Node* head){
     cout << endl;    
 }
 
-Node* sort(Node* first, Node* second){
+Node* sortMergeBrute(Node* first, Node* second){
+    Node* t1 = first;
+    Node* t2 = second;
+    vector<int> arr;
+    while(t1){
+        arr.push_back(t1->data);
+        t1 = t1->next;
+    }
+
+    while(t2){
+        arr.push_back(t2->data);
+        t2 = t2->next;
+    }
+
+    sort(arr.begin(), arr.end());
+
+    Node* head = convertArray2LL(arr);
+    return head;
+}
+
+Node* sortMerge(Node* first, Node* second){
     Node* t1 = first;
     Node* t2 = second;
     Node* dummy = new Node(-1);
@@ -74,7 +94,7 @@ int main(){
     vector<int> arr2 = {1,3,4,6};
     Node* first = convertArray2LL(arr1);
     Node* second = convertArray2LL(arr2);
-    Node* head = sort(first, second);
+    Node* head = sortMergeBrute(first, second);
     print(head);
     return 0;
 }
