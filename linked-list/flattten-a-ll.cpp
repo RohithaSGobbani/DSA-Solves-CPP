@@ -39,7 +39,9 @@ void print(Node* head){
     cout << endl;    
 }
 
-Node* flattenLinkedList(Node* head) 
+//Brute
+
+Node* flattenLinkedListBrute(Node* head) 
 {
 	vector<int> arr;
 	Node* temp = head;
@@ -53,5 +55,38 @@ Node* flattenLinkedList(Node* head)
 	}
 	sort(arr.begin(), arr.end());
 	head = convert2LL(arr);
+	return head;
+}
+
+//Optimal
+
+Node* merge(Node* list1, Node* list2){
+	Node* dummy = new Node(-1);
+	Node* res = dummy;
+	while(list1 && list2){
+		if(list1->data < list2->data){
+			res->child = list1;
+			res = list1;
+			list1 = list1->child;
+		}else{
+			res->child = list2;
+			res = list2;
+			list2 = list2->child;
+		}
+		res->next = NULL;
+	}
+	if(list1) res->child = list1;
+	else res->child = list2;
+	if(dummy->child) dummy->child->next = nullptr;
+	return dummy->child;
+}
+
+Node* flattenLinkedListOptimal(Node* head) 
+{
+	// Write your code here
+	if(head == NULL || head->next == NULL) return head;
+
+	Node* mergeHead = flattenLinkedList(head->next);
+	head = merge(head, mergeHead);
 	return head;
 }
