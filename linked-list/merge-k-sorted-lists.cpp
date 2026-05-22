@@ -94,6 +94,25 @@ Node* mergeKListsBetter(vector<Node*>& lists) {
     return head;
 }
 
+Node* mergeKListsOptimal(vector<Node*> lists){
+    priority_queue<pair<int, Node*>, vector<pair<int, Node*>>, greater<pair<int, Node*>>> pq;
+    for(int i = 0; i < lists.size(); i++){
+        if(lists[i])
+        pq.push({lists[i]->data, lists[i]});
+    }
+    Node* dummy = new Node(-1);
+    Node* temp = dummy;
+    while(!pq.empty()){
+        pair<int, Node*> p = pq.top();
+        temp->next = p.second;
+        pq.pop();
+        if(p.second->next)
+            pq.push({p.second->next->data, p.second->next});
+        temp = temp->next;
+    }
+    return dummy->next;
+}
+
 int main() {
     vector<int> arr1 = {1, 4, 5};
     vector<int> arr2 = {1, 3, 4};
@@ -105,7 +124,7 @@ int main() {
 
     vector<Node*> lists = {list1, list2, list3};
 
-    Node* mergedListHead = mergeKListsBetter(lists);
+    Node* mergedListHead = mergeKListsOptimal(lists);
 
 
     cout << "Merged List: ";
