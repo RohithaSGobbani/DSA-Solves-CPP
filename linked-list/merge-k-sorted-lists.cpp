@@ -39,6 +39,7 @@ void print(Node* head){
     cout << endl;    
 }
 
+//Brute
 Node* mergeKLists(vector<Node*>& lists) {
     int n = lists.size();
     vector<int> arr;
@@ -54,6 +55,44 @@ Node* mergeKLists(vector<Node*>& lists) {
     return head;
 }
 
+//Better
+Node* merge2list(Node* l1, Node* l2){
+    Node* t1 = l1;
+    Node* t2 = l2;
+    Node* dummy = new Node(-1);
+    Node* curr = dummy;
+    while(t1 && t2){
+        if(t1->data <= t2->data){
+            curr->next = t1;
+            curr = curr->next;
+            t1 = t1->next;
+        }else{
+            curr->next = t2;
+            curr = curr->next;
+            t2 = t2->next;
+        }
+    }
+    while(t1){
+        curr->next = t1;
+        curr = curr->next;
+        t1 = t1->next;
+    }
+    while(t2){
+        curr->next = t2;
+        curr = curr->next;
+        t2 = t2->next;
+    }
+    return dummy->next;
+}
+
+Node* mergeKListsBetter(vector<Node*>& lists) {
+    if(lists.size() == 0) return NULL;
+    Node* head = lists[0];
+    for(int i = 1; i < lists.size(); i++){
+        head = merge2list(head, lists[i]);
+    }
+    return head;
+}
 
 int main() {
     vector<int> arr1 = {1, 4, 5};
@@ -66,7 +105,7 @@ int main() {
 
     vector<Node*> lists = {list1, list2, list3};
 
-    Node* mergedListHead = mergeKLists(lists);
+    Node* mergedListHead = mergeKListsBetter(lists);
 
 
     cout << "Merged List: ";
