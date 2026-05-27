@@ -39,7 +39,7 @@ void print(Node* head){
     cout << endl;    
 }
 
-Node* sortList(Node* head) {
+Node* sortListBrute(Node* head) {
     if(head == NULL || head->next == NULL) return head;
     vector<int> arr;
     Node* temp = head;
@@ -55,6 +55,54 @@ Node* sortList(Node* head) {
         temp = temp->next;
     }
     return head;
+}
+
+//Better
+Node* findMid(Node* head){
+    Node* slow = head;
+    Node* fast = head->next;
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+Node* merge(Node* l1, Node* l2){
+    Node* t1 = l1;
+    Node* t2 = l2;
+    Node* dummy = new Node(-1);
+    Node* curr = dummy;
+    while(t1 && t2){
+        if(t1->data <= t2->data){
+            curr->next = t1;
+            t1 = t1->next;
+        }else{
+            curr->next = t2;
+            t2 = t2->next;
+        }
+        curr = curr->next;
+    }
+    while(t1){
+        curr->next = t1;
+        t1 = t1->next;
+        curr = curr->next;
+    }
+    while(t2){
+        curr->next = t2;
+        t2 = t2->next;
+        curr = curr->next;
+    }
+    return dummy->next;
+}
+Node* sortList(Node* head) {
+    if(head == NULL || head->next == NULL) return head;
+    Node* middle = findMid(head);
+    Node* lefthead = head;
+    Node* righthead = middle->next;
+    middle->next = nullptr;
+    lefthead = sortList(lefthead);
+    righthead = sortList(righthead);
+    return merge(lefthead, righthead);
 }
 
 /*
