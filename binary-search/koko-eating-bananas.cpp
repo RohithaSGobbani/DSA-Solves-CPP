@@ -32,7 +32,7 @@ int minEatingSpeed(vector<int> &arr, int h){
 
 //Optimal: BS
 int minEatingSpeedBS(vector<int> &arr, int h){
-    int low = 0, high = maxi(arr);
+    int low = 1, high = maxi(arr);
     while(low <= high){
         int mid = low + (high - low)/2;
         int totalhrs = totalhr(arr,mid);
