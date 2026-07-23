@@ -17,6 +17,28 @@ int maxAreaBrute(vector<int>& height) {
     return mxwater;
 }
 
+int maxAreaOptimal(vector<int>& height) {
+    int n = height.size();
+    int mxwater = INT_MIN;
+    int i = 0;
+    int j = n-1;
+    while(j > i){
+        int width = j - i;
+        int h;
+        if(height[i] >= height[j]) {
+            h = height[j];
+            j--;
+        }else{
+            h = height[i];
+            i++;
+        } 
+        int water = width * h;
+        mxwater = max(mxwater, water);
+        
+    }
+    return mxwater;
+}
+
 /*
 Input: height = [1,8,6,2,5,4,8,3,7]
 Output: 49
