@@ -24,7 +24,7 @@ void ceil(vector<int> &arr, int target){
     while(low <= high){
         int mid = low + (high-low)/2;
         if(arr[mid] >= target){
-            ans = mid;
+            ans = arr[mid];
             high = mid-1;
         }else{
             low = mid+1;
